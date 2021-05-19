@@ -62,21 +62,28 @@ let job = "";
 
 bot.on('message', msg => {
 
+  try {
 
-  if (msg.content === 'ذكرني') {
-    msg.channel.send("ستتلقى تذكيرا كل ساعة").catch(err => console.log(err))
-    job = schedule.scheduleJob('53 * * * *', function () {
-      var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
-      msg.channel.send("📿 " + item).catch(err => console.log(err))
-    })
-  }
-
-  if (msg.content === 'إيقاف' || msg.content === 'ايقاف') {
-    if (job) {
-      job.cancel()
-
+    if (msg.content === 'ذكرني') {
+      msg.channel.send("ستتلقى تذكيرا كل ساعة")
+      job = schedule.scheduleJob('53 * * * *', function () {
+        var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
+        msg.channel.send("📿 " + item)
+      })
     }
+
+    if (msg.content === 'إيقاف' || msg.content === 'ايقاف') {
+      if (job) {
+        job.cancel()
+
+      }
+    }
+
+  } catch (err) {
+    console.log(err)
   }
+
+
 
   //   let text = "msg.content.slice('/private'.length);" // cuts off the /private part
   //   msg.guild.members.forEach(member => {
