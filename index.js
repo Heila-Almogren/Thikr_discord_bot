@@ -64,10 +64,10 @@ bot.on('message', msg => {
 
 
   if (msg.content === 'ذكرني') {
-    msg.channel.send("ستتلقى تذكيرا كل ساعة")
+    msg.channel.send("ستتلقى تذكيرا كل ساعة").catch(err => console.log(err))
     job = schedule.scheduleJob('53 * * * *', function () {
       var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
-      msg.channel.send("📿 " + item)
+      msg.channel.send("📿 " + item).catch(err => console.log(err))
     })
   }
 
