@@ -142,7 +142,7 @@ bot.on('message', msg => {
         const Embed_thikr = new Discord.MessageEmbed()
           .setColor('#0099ff')
           .setTitle('دعاء')
-          .setDescription('Some description here')
+          .setDescription(thikr_array[Math.floor(Math.random() * thikr_array.length)])
 
         bot.channels.get(getChannelID(channel_name)).send(Embed_thikr).catch(err => console.error(err));
 
