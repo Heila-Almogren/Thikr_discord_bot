@@ -119,13 +119,16 @@ bot.on('message', msg => {
     let channel_name = msg.content.substring(cmd_set_channel.length).toLowerCase().replace(/[0-9]/g, "").trim()
     let channel_time = msg.content.substring(cmd_set_channel.length + channel_name.length + 1).toLowerCase().trim()
     console.log(channel_time)
-    if (channel_time == "" || !validTime(channel_time)) {
+
+    if (!validTime(channel_time)) {
+      return;
+    }
+
+    if (channel_time == "") {
       channel_time = 5000
     } else {
       channel_time = parseInt(channel_time) * 1000
     }
-
-
 
 
     // Verify channel is valid
@@ -134,7 +137,7 @@ bot.on('message', msg => {
       // Schedule 
       job = setInterval(function () {
         var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
-        bot.channels.get(getChannelID(channel_name)).send("📿 📿 " + item).catch(err => console.error(err));
+        bot.channels.get(getChannelID(channel_name)).send("📿 " + item).catch(err => console.error(err));
 
       }, channel_time)
 
@@ -189,7 +192,10 @@ bot.on('message', msg => {
   }
 
   function validTime(time) {
-    if (isNaN(time)) return false;
+    if (isNaN(time)) {
+      msg.channel.send("Invalid time")
+      return false;
+    };
     if (parseInt(time) < 30) {
       msg.channel.send("Time should be more than 30 minutes")
       return false;
