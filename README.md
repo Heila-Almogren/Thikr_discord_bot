@@ -17,3 +17,5 @@ https://discord.com/oauth2/authorize?client_id=844618864745644050&permissions=67
 <br> ```thikr | set channel general```
 <br> <br> ⏸ **To pause bot:**
 <br> ```thikr | stop```
+<br> <br> ❓ **For help:**
+<br> ```thikr | help```
