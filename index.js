@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 const schedule = require('node-schedule');
+const { Client, Attachment, Message, MessageEmbed } = require("discord.js");
 
 bot.login(TOKEN);
 
@@ -133,18 +134,23 @@ bot.on('message', msg => {
 
     // Verify channel is valid
     if (getChannelIDs().includes(channel_name)) {
+      console.log(true + "");
 
       // Schedule 
       job = setInterval(function () {
+
         var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
         // bot.channels.get(getChannelID(channel_name)).send("📿 " + item).catch(err => console.error(err));
-
-        const Embed_thikr = new Discord.MessageEmbed()
-          .setColor('#0099ff')
+        const exampleEmbed = new Discord.MessageEmbed()
           .setTitle('دعاء')
-          .setDescription(thikr_array[Math.floor(Math.random() * thikr_array.length)])
+          .setDescription(item);
+        bot.channels.cache.get(getChannelID(channel_name)).send(exampleEmbed);
+        // const Embed_thikr = new Discord.MessageEmbed()
+        //   .setColor('#0099ff')
+        //   .setTitle('دعاء')
+        //   .setDescription("item")
 
-        bot.channels.get(getChannelID(channel_name)).send(Embed_thikr).catch(err => console.error(err));
+        // bot.channels.get(getChannelID(channel_name)).send(Embed_thikr).catch(err => console.error(err));
 
 
       }, channel_time)
@@ -169,7 +175,7 @@ bot.on('message', msg => {
 
   function getChannelIDs() {
     var array = [];
-    let channels = bot.channels.array();
+    let channels = bot.channels.cache.array();
     for (const channel of channels.values()) {
       if (channel.type === 'text')
         array.push(channel.name);
@@ -181,7 +187,7 @@ bot.on('message', msg => {
 
   function getChannelID(name) {
 
-    let channels = bot.channels.array();
+    let channels = bot.channels.cache.array();
     for (const channel of channels.values()) {
       if (channel.name === name)
         return channel.id
