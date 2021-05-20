@@ -196,10 +196,10 @@ bot.on('message', msg => {
       msg.channel.send("Invalid time")
       return false;
     };
-    if (parseInt(time) < 30) {
-      msg.channel.send("Time should be more than 30 minutes")
-      return false;
-    }
+    // if (parseInt(time) < 30) {
+    //   msg.channel.send("Time should be more than 30 minutes")
+    //   return false;
+    // }
     return true;
   }
 });
