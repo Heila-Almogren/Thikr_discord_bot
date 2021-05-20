@@ -137,7 +137,15 @@ bot.on('message', msg => {
       // Schedule 
       job = setInterval(function () {
         var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
-        bot.channels.get(getChannelID(channel_name)).send("📿 " + item).catch(err => console.error(err));
+        // bot.channels.get(getChannelID(channel_name)).send("📿 " + item).catch(err => console.error(err));
+
+        const Embed_thikr = new Discord.MessageEmbed()
+          .setColor('#0099ff')
+          .setTitle('دعاء')
+          .setDescription('Some description here')
+
+        bot.channels.get(getChannelID(channel_name)).send(Embed_thikr).catch(err => console.error(err));
+
 
       }, channel_time)
 
