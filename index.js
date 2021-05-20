@@ -125,9 +125,9 @@ bot.on('message', msg => {
     }
 
     if (channel_time == "") {
-      channel_time = 5000
+      channel_time = 50000
     } else {
-      channel_time = parseInt(channel_time) * 1000
+      channel_time = parseInt(channel_time) * 10000
     }
 
 
