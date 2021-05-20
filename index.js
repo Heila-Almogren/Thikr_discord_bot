@@ -62,26 +62,28 @@ let job = "";
 
 bot.on('message', msg => {
 
-  try {
+  msg.channel.send("ستتلقى تذكيرا كل ساعة").catch(err => console.error(err));
 
-    if (msg.content === 'ذكرني') {
-      msg.channel.send("ستتلقى تذكيرا كل ساعة").catch(err => console.error(err));
-      job = schedule.scheduleJob('53 * * * *', function () {
-        var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
-        msg.channel.send("📿 " + item).catch(err => console.error(err));
-      })
-    }
+  // try {
 
-    if (msg.content === 'إيقاف' || msg.content === 'ايقاف') {
-      if (job) {
-        job.cancel()
+  //   if (msg.content === 'ذكرني') {
+  //     msg.channel.send("ستتلقى تذكيرا كل ساعة").catch(err => console.error(err));
+  //     job = schedule.scheduleJob('53 * * * *', function () {
+  //       var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
+  //       msg.channel.send("📿 " + item).catch(err => console.error(err));
+  //     })
+  //   }
 
-      }
-    }
+  //   if (msg.content === 'إيقاف' || msg.content === 'ايقاف') {
+  //     if (job) {
+  //       job.cancel()
 
-  } catch (err) {
-    console.log(err)
-  }
+  //     }
+  //   }
+
+  // } catch (err) {
+  //   console.log(err)
+  // }
 
 
 
