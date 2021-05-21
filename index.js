@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 const schedule = require('node-schedule');
+const athkar_list = require('./athkar_list');
 const { Client, Attachment, Message, MessageEmbed } = require("discord.js");
 
 bot.login(TOKEN);
@@ -138,12 +139,12 @@ bot.on('message', msg => {
 
       // Schedule 
       job = setInterval(function () {
-
-        var item = thikr_array[Math.floor(Math.random() * thikr_array.length)]
+        console.log(athkar_list)
+        var item = athkar_list[Math.floor(Math.random() * athkar_list.length)]
         // bot.channels.get(getChannelID(channel_name)).send("📿 " + item).catch(err => console.error(err));
         const exampleEmbed = new Discord.MessageEmbed()
-          .setTitle('دعاء')
-          .setDescription(item);
+          .setTitle(item.title)
+          .setDescription(item.description);
         bot.channels.cache.get(getChannelID(channel_name)).send(exampleEmbed);
         // const Embed_thikr = new Discord.MessageEmbed()
         //   .setColor('#0099ff')
