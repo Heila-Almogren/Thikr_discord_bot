@@ -54,9 +54,9 @@ bot.on('ready', () => {
 
 // Globals
 let job = "";
-let cmd_set_channel = '#setroom';
-let cmd_stop = "#stop"
-let cmd_help = "#help"
+let cmd_set_channel = 'thikr | set channel';
+let cmd_stop = "thikr | stop"
+let cmd_help = "thikr | help"
 
 
 bot.on('message', msg => {
